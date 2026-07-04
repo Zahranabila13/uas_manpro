@@ -1,0 +1,26 @@
+[
+  {
+    "id": 2,
+    "nama": "nabila",
+    "email": "nabila@sekolah.id",
+    "passwordHash": "$2a$10$ozMmnbzyLTgzP.FH1rsYQOvmyzAy/rdzMjRfliGnjl6J/JA3QC0ki",
+    "role": "Admin",
+    "createdAt": "2026-07-03T03:33:32.616Z"
+  },
+  {
+    "id": 3,
+    "nama": "zahra nabila",
+    "email": "zahra@sekolah.id",
+    "passwordHash": "$2a$10$yCDq2ATk.oRBaKPrt7sxYu.d31JVtNS5ZLq81Lrvox0CmjWvGeXqC",
+    "role": "Siswa",
+    "createdAt": "2026-07-03T03:40:50.877Z"
+  },
+  {
+    "id": 4,
+    "nama": "ida",
+    "email": "ida@sekolah.id",
+    "passwordHash": "$2a$10$C0CAaYpd8cUPJrmhn0Rq4eVfXu21B90dMkD4rQ2HMQl57ECnQg1ee",
+    "role": "OrangTua",
+    "createdAt": "2026-07-03T03:55:32.885Z"
+  }
+]

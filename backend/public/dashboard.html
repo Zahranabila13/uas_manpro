@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dashboard Kepuasan Siswa & Orang Tua</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Fraunces:wght@500;600;700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css" />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
+</head>
+
+<body>
+
+    <div class="app-shell">
+        <!-- SIDEBAR -->
+        <aside class="sidebar">
+            <div class="brand">
+                <div class="brand-mark">DK</div>
+                <div class="brand-name">Dashboard<br />Kepuasan Sekolah</div>
+            </div>
+            <div class="sprint-badge">● SPRINT 1 AKTIF</div>
+
+            <div class="nav-group-label">Menu</div>
+            <div id="navContainer"></div>
+
+            <div class="sidebar-footer">
+                <div class="user-chip">
+                    <div class="avatar" id="avatarInitial">?</div>
+                    <div>
+                        <div id="userNama" style="color:#fff; font-size:13.5px; font-weight:600;"></div>
+                        <div class="role-tag" id="userRoleTag"></div>
+                    </div>
+                </div>
+                <button class="btn-ghost" style="width:100%; color:#cdd8d5; border-color:rgba(255,255,255,.2);"
+                    onclick="logout()">Keluar</button>
+            </div>
+        </aside>
+
+        <!-- MAIN -->
+        <main class="main">
+
+            <!-- ===== RINGKASAN ===== -->
+            <section class="section active" id="section-ringkasan">
+                <div class="main-header">
+                    <div>
+                        <h1>Ringkasan</h1>
+                        <p>Sekilas kondisi survei kepuasan hari ini.</p>
+                    </div>
+                </div>
+                <div id="notifBanner"></div>
+                <div class="grid-3" id="statCards"></div>
+
+                <h2 style="margin-top:30px;">Survei Terbaru</h2>
+                <div id="ringkasanSurveyList"></div>
+            </section>
+
+            <!-- ===== KELOLA PENGGUNA (Admin) ===== -->
+            <section class="section" id="section-pengguna">
+                <div class="main-header">
+                    <div>
+                        <h1>Kelola Pengguna</h1>
+                        <p>Daftar akun dengan akses berbasis peran (role-based access control).</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Nama</th>
+                                <th>Email</th>
+                                <th>Peran</th>
+                                <th>Terdaftar</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody id="userTableBody"></tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- ===== BUAT SURVEI (Admin) ===== -->
+            <section class="section" id="section-buat-survei">
+                <div class="main-header">
+                    <div>
+                        <h1>Buat Survei Baru</h1>
+                        <p>Susun pertanyaan Likert 1–5, pilihan ganda, atau essay singkat.</p>
+                    </div>
+                </div>
+                <div class="card" style="max-width:680px;">
+                    <form id="surveyForm">
+                        <label for="surveyJudul">Judul Survei</label>
+                        <input id="surveyJudul" required placeholder="Contoh: Survei Kepuasan Semester Ganjil 2026" />
+                        <label for="surveyDeskripsi">Deskripsi Singkat</label>
+                        <textarea id="surveyDeskripsi" rows="2" placeholder="Tujuan survei ini..."></textarea>
+
+                        <div id="questionList" style="margin-top:18px;"></div>
+
+                        <button type="button" class="btn-ghost btn-sm" id="addQuestionBtn" style="margin-top:6px;">+
+                            Tambah Pertanyaan</button>
+                        <div style="margin-top:22px; display:flex; gap:10px;">
+                            <button type="submit" class="btn-primary">Terbitkan Survei</button>
+                        </div>
+                        <div class="error-msg" id="surveyFormError"></div>
+                    </form>
+                </div>
+            </section>
+
+            <!-- ===== SEMUA SURVEI (Admin/Guru: hasil, Siswa/OrangTua: isi) ===== -->
+            <section class="section" id="section-survei">
+                <div class="main-header">
+                    <div>
+                        <h1 id="surveiSectionTitle">Semua Survei</h1>
+                        <p id="surveiSectionDesc">Pantau dan kelola survei yang telah diterbitkan.</p>
+                    </div>
+                </div>
+                <div id="surveyListContainer"></div>
+            </section>
+
+        </main>
+    </div>
+
+    <!-- ===== MODAL: ISI SURVEI (Siswa/OrangTua) ===== -->
+    <div class="modal-overlay" id="fillModal">
+        <div class="modal-box">
+            <h2 id="fillSurveyTitle"></h2>
+            <p id="fillSurveyDesc" style="color:var(--text-muted); font-size:13.5px;"></p>
+            <form id="fillSurveyForm">
+                <div id="fillQuestions"></div>
+                <div style="display:flex; gap:10px; margin-top:18px;">
+                    <button type="submit" class="btn-primary">Kirim Jawaban</button>
+                    <button type="button" class="btn-ghost" onclick="closeModal('fillModal')">Batal</button>
+                </div>
+                <div class="error-msg" id="fillFormError"></div>
+            </form>
+        </div>
+    </div>
+
+    <!-- ===== MODAL: HASIL SURVEI (Admin/Guru) ===== -->
+    <div class="modal-overlay" id="resultModal">
+        <div class="modal-box" style="max-width:760px;">
+            <div style="display:flex; justify-content:space-between; align-items:flex-start;">
+                <div>
+                    <h2 id="resultSurveyTitle"></h2>
+                    <p id="resultRespondenCount" style="color:var(--text-muted); font-size:13.5px; margin-top:0;"></p>
+                </div>
+                <button class="btn-amber btn-sm" id="exportBtn">⬇ Ekspor CSV (Excel)</button>
+            </div>
+            <div id="resultBody"></div>
+            <button type="button" class="btn-ghost" style="margin-top:14px;"
+                onclick="closeModal('resultModal')">Tutup</button>
+        </div>
+    </div>
+
+    <div class="toast" id="toast"></div>
+
+    <script src="js/api.js"></script>
+    <script src="js/dashboard.js"></script>
+</body>
+
+</html>

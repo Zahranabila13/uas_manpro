@@ -1,0 +1,46 @@
+[
+  {
+    "id": 1,
+    "surveyId": 1,
+    "userId": 3,
+    "userNama": "zahra nabila",
+    "userRole": "Siswa",
+    "answers": [
+      {
+        "questionId": 1,
+        "value": 4
+      },
+      {
+        "questionId": 2,
+        "value": "Fasilitas"
+      },
+      {
+        "questionId": 3,
+        "value": "diadakannya rapat orang tua beserta pihak sekolah minimal 3 bulan sekali"
+      }
+    ],
+    "submittedAt": "2026-07-03T03:54:41.952Z"
+  },
+  {
+    "id": 2,
+    "surveyId": 1,
+    "userId": 4,
+    "userNama": "ida",
+    "userRole": "OrangTua",
+    "answers": [
+      {
+        "questionId": 1,
+        "value": 3
+      },
+      {
+        "questionId": 2,
+        "value": "Kualitas Pengajar"
+      },
+      {
+        "questionId": 3,
+        "value": "diadakan rapat 1 bulan sekali"
+      }
+    ],
+    "submittedAt": "2026-07-03T03:56:53.960Z"
+  }
+]

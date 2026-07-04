@@ -1,0 +1,33 @@
+[
+  {
+    "id": 1,
+    "judul": "Survei Kepuasan Semester Genap 2026",
+    "deskripsi": "Untuk mengetahui evaluasi apa saja yang harus di lakukan kedepannya",
+    "status": "active",
+    "createdBy": 2,
+    "createdByNama": "nabila",
+    "createdAt": "2026-07-03T03:39:32.161Z",
+    "questions": [
+      {
+        "id": 1,
+        "type": "likert",
+        "text": "seberapa puas dengan pelayanan yang di sekolah selama semester genap ini?"
+      },
+      {
+        "id": 2,
+        "type": "pilihan_ganda",
+        "text": "Menurut Anda, aspek mana yang paling perlu ditingkatkan sekolah?",
+        "options": [
+          "Kualitas Pengajar",
+          "Fasilitas",
+          "Kegiatan Ekskul"
+        ]
+      },
+      {
+        "id": 3,
+        "type": "essay",
+        "text": "Apa saran Anda agar komunikasi antara sekolah dan orang tua/siswa bisa lebih baik?"
+      }
+    ]
+  }
+]

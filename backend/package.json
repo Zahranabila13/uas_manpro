@@ -1,0 +1,16 @@
+{
+    "name": "dashboard-kepuasan-backend",
+    "version": "1.0.0",
+    "description": "Sistem Dashboard Kepuasan Siswa & Orang Tua Berbasis Web - Sprint 1 (Manajemen Pengguna + Survei Digital)",
+    "main": "server.js",
+    "scripts": {
+        "start": "node server.js",
+        "dev": "node server.js"
+    },
+    "dependencies": {
+        "express": "^4.19.2",
+        "bcryptjs": "^2.4.3",
+        "jsonwebtoken": "^9.0.2",
+        "cors": "^2.8.5"
+    }
+}
